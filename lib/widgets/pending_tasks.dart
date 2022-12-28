@@ -32,8 +32,10 @@ class PendingTasks extends StatelessWidget {
             builder: ((context, List<TaskModel> taskList, child) {
               getAllTask();
               datad = taskList
-                  .where((element) => element.taskDate
-                      .isBefore(DateTime.now().subtract(Duration(days: 1))))
+                  .where((element) =>
+                      element.taskDate.isBefore(
+                          DateTime.now().subtract(Duration(days: 1))) &&
+                      element.isCompleted == false)
                   .toList();
 
               return datad.isNotEmpty

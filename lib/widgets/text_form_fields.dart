@@ -30,6 +30,7 @@ class TextFormFields extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: TextFormField(
+            style: const TextStyle(color: Colors.black),
             inputFormatters: [UpperCaseTextFormatter()],
             maxLines: maxlines,
             controller: myController,

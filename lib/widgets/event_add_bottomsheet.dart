@@ -142,6 +142,7 @@ class _EventAddBottomSheetState extends State<EventAddBottomSheet> {
                               text:
                                   DateFormat('dd-MMM-yyyy').format(currentDate),
                               fontsize: 12,
+                              color: Colors.white,
                             ),
                             const Icon(Icons.calendar_month)
                           ],
@@ -178,6 +179,7 @@ class _EventAddBottomSheetState extends State<EventAddBottomSheet> {
                             TextWidget(
                               text: DateFormat('hh:mm a').format(currentTime),
                               fontsize: 12,
+                              color: Colors.white,
                             ),
                             const Icon(Icons.lock_clock_outlined)
                           ],

@@ -77,7 +77,8 @@ class _EventEditScreenState extends State<EventEditScreen> {
                             clipBehavior: Clip.antiAlias,
                             child: widget.passvalue.image == null
                                 ? Image.asset('lib/assests/Events.jpg')
-                                : Image.file(File(widget.passvalue.image!)),
+                                : Image.file(
+                                    File(image ?? widget.passvalue.image!)),
                           ),
                         ),
                       ),
@@ -155,6 +156,7 @@ class _EventEditScreenState extends State<EventEditScreen> {
                               text:
                                   DateFormat('dd-MMM-yyyy').format(currentDate),
                               fontsize: 12,
+                              color: Colors.white,
                             ),
                             const Icon(Icons.calendar_month)
                           ],
@@ -191,6 +193,7 @@ class _EventEditScreenState extends State<EventEditScreen> {
                             TextWidget(
                               text: DateFormat('hh:mm a').format(currentTime),
                               fontsize: 12,
+                              color: Colors.white,
                             ),
                             const Icon(Icons.lock_clock_outlined)
                           ],

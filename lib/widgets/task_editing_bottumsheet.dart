@@ -105,6 +105,7 @@ class _TaskEditingBottumSheetState extends State<TaskEditingBottumSheet> {
                           TextWidget(
                             text: DateFormat('dd-MMM-yyyy').format(currentDate),
                             fontsize: 12,
+                            color: Colors.white,
                           ),
                           const Icon(Icons.calendar_month)
                         ],
@@ -140,6 +141,7 @@ class _TaskEditingBottumSheetState extends State<TaskEditingBottumSheet> {
                           TextWidget(
                             text: DateFormat('hh:mm a').format(currentTime),
                             fontsize: 12,
+                            color: Colors.white,
                           ),
                           const Icon(Icons.lock_clock_outlined)
                         ],
@@ -200,11 +202,11 @@ class _TaskEditingBottumSheetState extends State<TaskEditingBottumSheet> {
                 onPressed: () {
                   editTaskButtonClick(
                       widget.passvalue.id, context, widget.passvalue);
-                  // Navigator.of(context).pushAndRemoveUntil(
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const MyBottomNavigationBar()),
-                  //     (route) => false);
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const MyBottomNavigationBar()),
+                      (route) => false);
+                  // Navigator.of(context).pop();
                 },
               )
             ],
@@ -230,7 +232,8 @@ class _TaskEditingBottumSheetState extends State<TaskEditingBottumSheet> {
         taskDate: _taskDate,
         taskTime: _taskTime,
         toggle: _toggle ?? widget.passvalue.toggle,
-        id: _id);
+        id: _id,
+        isCompleted: false);
     print('$_task');
     print('add');
     editTasks(index, context, _tasks);

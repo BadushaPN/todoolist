@@ -19,13 +19,16 @@ class TaskModel {
   final int toggle;
   @HiveField(5)
   final DateTime taskTime;
+  @HiveField(6)
+  final bool isCompleted;
   TaskModel(
       {required this.toggle,
       required this.task,
       required this.description,
       this.id,
       required this.taskDate,
-      required this.taskTime});
+      required this.taskTime,
+      required this.isCompleted});
 }
 
 @HiveType(typeId: 2)

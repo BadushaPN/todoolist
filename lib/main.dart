@@ -28,7 +28,8 @@ class TodooList extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TodooList',
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme:
+          ThemeData(primarySwatch: Colors.green, brightness: Brightness.light),
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );

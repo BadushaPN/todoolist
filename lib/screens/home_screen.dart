@@ -116,31 +116,9 @@ class TodayTaskText extends StatefulWidget {
 }
 
 class _TodayTaskTextState extends State<TodayTaskText> {
-  List<String> listitems = [
-    "All Tasks",
-    "High Priority Tasks",
-    "Medium Priority Tasks",
-    "Low Priority Tasks",
-  ];
-  String selectval = "All Tasks";
   @override
   Widget build(BuildContext context) {
-    // String? dropdownValue = 'A';
-    return
-        // DropdownButton(
-        //   value: selectval,
-        //   onChanged: (value) {
-        //     setState(() {
-        //       print(listitems.indexOf(value!));
-        //       selectval = value.toString();
-        //     });
-        //   },
-        //   items: listitems.map((itemone) {
-        //     return DropdownMenuItem(value: itemone, child: Text(itemone));
-        //   }).toList(),
-        // );
-
-        TextWidget(
+    return TextWidget(
       text: 'Tasks',
       fontWeight: FontWeight.w700,
     );

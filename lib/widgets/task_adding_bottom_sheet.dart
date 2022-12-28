@@ -94,6 +94,7 @@ class _TaskAddingBottomSheetState extends State<TaskAddingBottomSheet> {
                               text:
                                   DateFormat('dd-MMM-yyyy').format(currentDate),
                               fontsize: 12,
+                              color: Colors.white,
                             ),
                             const Icon(Icons.calendar_month)
                           ],
@@ -130,6 +131,7 @@ class _TaskAddingBottomSheetState extends State<TaskAddingBottomSheet> {
                             TextWidget(
                               text: DateFormat('hh:mm a').format(currentTime),
                               fontsize: 12,
+                              color: Colors.white,
                             ),
                             const Icon(Icons.lock_clock_outlined)
                           ],
@@ -222,7 +224,8 @@ class _TaskAddingBottomSheetState extends State<TaskAddingBottomSheet> {
         taskDate: _taskDate,
         taskTime: _taskTime,
         toggle: _toggle ?? 0,
-        id: _id);
+        id: _id,
+        isCompleted: false);
     print('$_task');
     print('add');
     addTasks(_tasks);

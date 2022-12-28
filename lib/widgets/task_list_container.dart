@@ -59,8 +59,10 @@ class TaskValueListnerBuilder extends StatelessWidget {
       builder: ((context, List<TaskModel> taskList, child) {
         getAllTask();
         datad = taskList
-            .where((element) => element.taskDate
-                .isAfter(DateTime.now().subtract(const Duration(days: 1))))
+            .where((element) =>
+                element.taskDate.isAfter(
+                    DateTime.now().subtract(const Duration(days: 1))) &&
+                element.isCompleted == false)
             .toList();
 
         return datad.isNotEmpty
@@ -128,7 +130,17 @@ class TaskSlidable extends StatelessWidget {
         motion: const BehindMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              editTask(data, context, data.id);
+              Fluttertoast.showToast(
+                msg: "'${data.task}' Task Done",
+                toastLength: Toast.LENGTH_SHORT,
+                timeInSecForIosWeb: 2,
+                textColor: Colors.white,
+                backgroundColor: Colors.black,
+                fontSize: 12,
+              );
+            },
             icon: Icons.done,
             backgroundColor: Colors.green,
           )
@@ -157,6 +169,19 @@ class TaskSlidable extends StatelessWidget {
       child: TaskCardList(data: data, prioritys: prioritys),
     );
   }
+
+  editTask(TaskModel data, context, index) {
+    final updateTask = TaskModel(
+      toggle: data.toggle,
+      task: data.task,
+      description: data.description,
+      taskDate: data.taskDate,
+      taskTime: data.taskTime,
+      isCompleted: true,
+      id: data.id,
+    );
+    editTasks(index, context, updateTask);
+  }
 }
 
 class TaskCardList extends StatelessWidget {
@@ -183,10 +208,11 @@ class TaskCardList extends StatelessWidget {
               prioritys[data.toggle],
               Text(
                 DateFormat('dd-MMM-yyyy').format(data.taskDate),
+                style: const TextStyle(color: Colors.black),
               ),
               Text(
                 DateFormat('hh:mm a').format(data.taskTime),
-                style: const TextStyle(fontSize: 11),
+                style: const TextStyle(fontSize: 11, color: Colors.black),
               )
             ],
           ),

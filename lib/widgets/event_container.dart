@@ -164,11 +164,13 @@ class EventBlock extends StatelessWidget {
                               text: DateFormat('dd-MMM-yyyy')
                                   .format(data.eventDate),
                               fontsize: 9,
+                              color: Colors.black,
                             ),
                             TextWidget(
                               text:
                                   DateFormat('hh:mm a').format(data.eventTime),
                               fontsize: 9,
+                              color: Colors.black,
                             )
                           ],
                         )

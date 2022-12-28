@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 // import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:todoolist/colo/color.dart';
@@ -28,10 +29,12 @@ class TextFormFieldsEdit extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: TextFormField(
+            style: const TextStyle(color: Colors.black),
             inputFormatters: [UpperCaseTextFormatter()],
             maxLines: maxlines,
             controller: myController,
             decoration: InputDecoration(
+              fillColor: Colors.black,
               border: InputBorder.none,
               hintText: hintTexts ?? 'Name',
             ),
