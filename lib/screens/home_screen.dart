@@ -1,9 +1,14 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:todoolist/db/db_function.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:todoolist/colo/color.dart';
 import 'package:todoolist/main.dart';
+import 'package:todoolist/model/data_model.dart';
 import 'package:todoolist/screens/search_screen.dart';
 import 'package:todoolist/screens/welcome_screen.dart';
+import 'package:todoolist/services/notification_service.dart';
 import 'package:todoolist/widgets/event_home_screen.dart';
 
 import 'package:todoolist/widgets/text_widget.dart';
@@ -60,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         UserNameAndSearchButton(),
                         WeekBalance(),
                         EventHomeScreen(),
-                        TasksHomeScreen()
+                        TasksHomeScreen(),
                       ],
                     ),
                   );

@@ -18,9 +18,9 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _currentIndex = 0;
   List<Widget> pages = [
     const HomeScreen(),
-    const Calendar(),
+    const Screen_calender(),
     const CompletedAndPendingTasks(),
-    const Profile()
+    Profile()
   ];
   @override
   Widget build(BuildContext context) {

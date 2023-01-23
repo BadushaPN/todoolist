@@ -34,7 +34,7 @@ class PendingTasks extends StatelessWidget {
               datad = taskList
                   .where((element) =>
                       element.taskDate.isBefore(
-                          DateTime.now().subtract(Duration(days: 1))) &&
+                          DateTime.now().subtract(const Duration(days: 1))) &&
                       element.isCompleted == false)
                   .toList();
 

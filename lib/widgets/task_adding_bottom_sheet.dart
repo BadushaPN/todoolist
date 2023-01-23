@@ -1,9 +1,13 @@
-import 'dart:io';
+// import 'dart:ffi';
+// import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
+import 'package:timezone/timezone.dart';
 import 'package:todoolist/db/db_function.dart';
 import 'package:todoolist/model/data_model.dart';
+import 'package:todoolist/services/notification_service.dart';
 import 'package:todoolist/widgets/bottom_navigation_bar.dart';
 import 'package:todoolist/widgets/event_add_bottomsheet.dart';
 import 'package:todoolist/widgets/task_adding_done_discard.dart';
@@ -34,6 +38,15 @@ class _TaskAddingBottomSheetState extends State<TaskAddingBottomSheet> {
   DateTime currentTime = DateTime.now();
   int? newindex = 0;
   List<bool> isSelected = [true, false, false];
+  // late final LocalNotificationServices service;
+  @override
+  void initState() {
+    // service = LocalNotificationServices();
+    // service.intialize();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -191,7 +204,7 @@ class _TaskAddingBottomSheetState extends State<TaskAddingBottomSheet> {
                   ],
                 ),
                 TaskAddingDoneDiscard(
-                  onPressed: () {
+                  onPressed: () async {
                     addTaskButtonClick();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(

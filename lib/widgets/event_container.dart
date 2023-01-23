@@ -9,10 +9,16 @@ import 'package:intl/intl.dart';
 import 'package:todoolist/colo/color.dart';
 import 'package:todoolist/db/db_function.dart';
 import 'package:todoolist/model/data_model.dart';
+import 'package:todoolist/services/notification_service.dart';
 import 'package:todoolist/widgets/event_add_bottomsheet.dart';
 import 'package:todoolist/widgets/event_edit_bottom_sheet.dart';
 import 'package:todoolist/widgets/task_list_container.dart';
 import 'package:todoolist/widgets/text_widget.dart';
+
+DateTime notifyeventtime = DateTime.now();
+DateTime notifyeventdate = DateTime.now();
+// List<TaskModel> upcomingtask = [];
+EventModel? notifydataEvnt;
 
 class EventContainer extends StatelessWidget {
   const EventContainer({
@@ -27,6 +33,7 @@ class EventContainer extends StatelessWidget {
       PrioirtyIcons(colors: Colors.green)
     ];
     getAllEvents();
+    checkTimeNotificationEvent();
     return Container(
       decoration: BoxDecoration(
         color: globalColor(),
@@ -36,8 +43,20 @@ class EventContainer extends StatelessWidget {
       height: 180,
       child: ValueListenableBuilder(
         valueListenable: eventListNotifier,
-        builder: (context, List<EventModel> eventList, Widget? child) {
+        builder: (context, List<EventModel> eventLists, Widget? child) {
           getAllEvents();
+          // List<EventModel> eventList = eventLists
+          //     .where((element) => element.eventDate
+          //         .isAfter(DateTime.now().subtract(const Duration(days: 1))))
+          //     .toList();
+          List<EventModel> eventList = eventLists.where((element) {
+            return DateTime.parse(element.eventDate.toString()).day ==
+                    DateTime.now().day &&
+                DateTime.parse(element.eventDate.toString()).month ==
+                    DateTime.now().month &&
+                DateTime.parse(element.eventDate.toString()).year ==
+                    DateTime.now().year;
+          }).toList();
           return eventList.isNotEmpty
               ? GridView.count(
                   physics: const ScrollPhysics(),
@@ -45,7 +64,20 @@ class EventContainer extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   children: List.generate(eventList.length, (index) {
-                    final data = eventList[index];
+                    List<EventModel> sortedEventList = eventList
+                      ..sort(
+                        (a, b) => a.eventDate.compareTo(b.eventDate),
+                      );
+                    final data = sortedEventList[index];
+
+                    for (int i = 0; i < sortedEventList.length; i++) {
+                      final sortedtaskLists = sortedEventList[index];
+                      print(sortedtaskLists.eventName);
+                      notifyeventtime = sortedtaskLists.eventTime;
+                      notifyeventdate = sortedtaskLists.eventDate;
+                      notifydataEvnt = sortedtaskLists;
+                      print(notifytime);
+                    }
                     return Padding(
                       padding: const EdgeInsets.only(top: 5, bottom: 5),
                       child: GestureDetector(

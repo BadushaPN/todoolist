@@ -5,11 +5,17 @@ import 'package:intl/intl.dart';
 // import 'package:intl/intl.dart';
 import 'package:todoolist/colo/color.dart';
 import 'package:todoolist/db/db_function.dart';
+import 'package:todoolist/services/notification_service.dart';
 // import 'package:todoolist/screens/home_screen.dart';
 import 'package:todoolist/widgets/task_editing_bottumsheet.dart';
 import 'package:todoolist/widgets/text_widget.dart';
 
 import '../model/data_model.dart';
+
+DateTime notifytime = DateTime.now();
+DateTime notifyDate = DateTime.now();
+// List<TaskModel> upcomingtask = [];
+TaskModel? notifydata;
 
 class TaskListContainer extends StatelessWidget {
   int index;
@@ -51,6 +57,7 @@ class TaskValueListnerBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    checkTimeNotification();
     print('{$newindex}task');
     List<TaskModel> datad = [];
     // List<TaskModel> highPriority = [];
@@ -58,12 +65,21 @@ class TaskValueListnerBuilder extends StatelessWidget {
       valueListenable: taskListNotifier,
       builder: ((context, List<TaskModel> taskList, child) {
         getAllTask();
-        datad = taskList
-            .where((element) =>
-                element.taskDate.isAfter(
-                    DateTime.now().subtract(const Duration(days: 1))) &&
-                element.isCompleted == false)
-            .toList();
+        datad = taskList.where((element) {
+          return DateTime.parse(element.taskDate.toString()).day ==
+                  DateTime.now().day &&
+              DateTime.parse(element.taskDate.toString()).month ==
+                  DateTime.now().month &&
+              DateTime.parse(element.taskDate.toString()).year ==
+                  DateTime.now().year &&
+              element.isCompleted == false;
+        }).toList();
+        // datad = taskList
+        //     .where((element) =>
+        //         element.taskDate.isAfter(
+        //             DateTime.now().subtract(const Duration(days: 1))) &&
+        //         element.isCompleted == false)
+        //     .toList();
 
         return datad.isNotEmpty
             ? ListView.builder(
@@ -73,6 +89,14 @@ class TaskValueListnerBuilder extends StatelessWidget {
                       return a.taskDate.compareTo(b.taskDate);
                     });
                   final data = sortedtaskList[index];
+                  for (int i = 0; i < sortedtaskList.length; i++) {
+                    final sortedtaskLists = sortedtaskList[index];
+                    print(sortedtaskLists.task);
+                    notifytime = sortedtaskLists.taskTime;
+                    notifydata = sortedtaskLists;
+                    notifyDate = sortedtaskLists.taskDate;
+                    print(notifytime);
+                  }
 
                   return TaskBlocks(
                     data: data,
