@@ -59,9 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   );
                 } else {
-                  return SingleChildScrollView(
+                  return const SingleChildScrollView(
                     child: Column(
-                      children: const [
+                      children: [
                         UserNameAndSearchButton(),
                         WeekBalance(),
                         EventHomeScreen(),
